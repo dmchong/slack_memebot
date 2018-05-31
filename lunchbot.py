@@ -250,9 +250,17 @@ class Lunchbot(object):
         else:
             print 'Connection failed. Invalid Slack token or bot ID?'
 
+def main_run(nested):
+    try:
+        BOT = Lunchbot()
+        # BOT.print_bot_id(BOT.BOT_NAME)
+
+        BOT.run()
+    except Exception as e:
+        print "failed " + nested + " times"
+        print str(e)
+        main_run(nested+1)
 
 if __name__ == "__main__":
-    BOT = Lunchbot()
-    # BOT.print_bot_id(BOT.BOT_NAME)
-
-    BOT.run()
+    start = 0
+    main_run(start)
